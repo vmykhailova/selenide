@@ -27,20 +27,17 @@ public class LoginPage implements PageObject{
     }
 
     public HomePage login(String email, String password) {
-        System.out.println("Login as user");
         inputEmail(email);
         inputPassword(password);
         return clickSingInButton();
     }
 
     public void inputEmail(String email) {
-        System.out.println("Input email");
 //        $(emailField).setValue(email);
         $(loginInAuthForm).setValue(email);
     }
 
     public void inputPassword(String password) {
-        System.out.println("Input password");
         $(passwordField).setValue(password);
     }
 
@@ -49,7 +46,6 @@ public class LoginPage implements PageObject{
     }
 
     public HomePage clickSingInButton() {
-        System.out.println("Click Sing In button");
         $(sighnInBtn).click();
         return new HomePage();
     }

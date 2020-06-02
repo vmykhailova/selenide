@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Api smoke test suite">
+
+    <test name="Registration tests">
+        <classes>
+            <class name="com.hillel.auto.selenide.ArticleTest"/>
+        </classes>
+    </test>
+
+</suite>

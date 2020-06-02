@@ -1,25 +1,30 @@
 package com.hillel.auto.selenide;
 
 import com.codeborne.selenide.Condition;
+import config.ArticleConfiguration;
 import model.Article;
 import model.ArticleData;
+import org.aeonbits.owner.ConfigFactory;
 import org.testng.annotations.Test;
 import pageObjects.HomePage;
-import pageObjects.NewArticlePage;
 import static com.codeborne.selenide.Selectors.*;
 import static com.codeborne.selenide.Selenide.$;
 
 public class ArticleTest extends TestBase{
     Article article = ArticleData.createArticle();
+    private ArticleConfiguration articleConfiguration = ConfigFactory.create(ArticleConfiguration.class);
     @Test(priority = 1)
     public void createArticleTest(){
         login();
         HomePage.goToNewPostPage();
-        NewArticlePage newArticlePage = new NewArticlePage();
-        $(by("placeholder", "Article Title")).setValue(article.getTitle());
-        $(by("placeholder", "What's this article about?")).setValue(article.getDescription());
-        $(by("placeholder", "Write your article (in markdown)")).setValue(article.getText());
-        $(by("placeholder", "Enter tags")).setValue(article.getTags());
+        $(by("placeholder", "Article Title"))
+                .setValue(articleConfiguration.title());
+        $(by("placeholder", "What's this article about?"))
+                .setValue(articleConfiguration.description());
+        $(by("placeholder", "Write your article (in markdown)"))
+                .setValue(articleConfiguration.text());
+        $(by("placeholder", "Enter tags"))
+                .setValue(articleConfiguration.tags());
         $(by("type", "button")).click();
         $("h1").shouldHave(Condition.text(article.getTitle()));
     }
@@ -31,12 +36,16 @@ public class ArticleTest extends TestBase{
         $("h1").click();
         $(byClassName("ion-edit")).click();
         $(by("placeholder", "Article Title")).clear();
-        $(by("placeholder", "Article Title")).setValue("Edited article");
-        $(by("placeholder", "What's this article about?")).setValue("Edited article");
-        $(by("placeholder", "Write your article (in markdown)")).setValue("Edited article");
-        $(by("placeholder", "Enter tags")).setValue("Edited article");
+        $(by("placeholder", "Article Title"))
+                .setValue(articleConfiguration.editedTitle());
+        $(by("placeholder", "What's this article about?"))
+                .setValue(articleConfiguration.editedDescription());
+        $(by("placeholder", "Write your article (in markdown)"))
+                .setValue(articleConfiguration.editedText());
+        $(by("placeholder", "Enter tags"))
+                .setValue(articleConfiguration.editedTags());
         $("button.btn").click();
-        $("h1").shouldHave(Condition.text("Edited article"));
+        $("h1").shouldHave(Condition.text("Edit article"));
     }
 
     @Test(priority = 3)

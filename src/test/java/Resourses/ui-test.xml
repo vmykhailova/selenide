@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="UI smoke test suite">
+
+    <test name="Login tests">
+        <classes>
+            <class name="com.hillel.auto.selenide.LoginTest"/>
+            <class name="com.hillel.auto.selenide.NavigationTest"/>
+            <class name="com.hillel.auto.selenide.ArticleTest"/>
+            <class name="com.hillel.auto.selenide.CommentTest"/>
+        </classes>
+    </test>
+
+</suite>

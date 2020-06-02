@@ -10,6 +10,7 @@ public class HomePage implements PageObject{
         $("[href='#@" +userName+"']").shouldBe(Condition.visible.because("model.User not logged in!"));
         return this;
     }
+
     public static void goToNewPostPage(){
         $(by("href", "#editor")).shouldBe(Condition.visible).click();
     }
